@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
-export default function Square({children, updateBoard, index}) {
-  return (
-    <div className='square'>{children}</div>
-  )
+export default function Square({ children, isSelected, updateBoard, index }) {
+  const className = `square ${isSelected ? 'is-selected' : ''}`;
+  const handleClick = () => { updateBoard(index) }
+  return <div onClick={handleClick} className={className}>{children}</div>;
 }
