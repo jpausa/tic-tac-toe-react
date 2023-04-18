@@ -1,10 +1,10 @@
 import { useState } from "react";
 import confetti from "canvas-confetti";
-import { Square } from "./components/Square";
 import { TURNS } from "./constants/common";
 import { checkEndGame, checkWinner } from "./helpers/common";
 import { WinnerModal } from "./components/WinnerModal";
 import { Board } from "./components/Board";
+import { Turns } from "./components/Turns";
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null));
@@ -38,10 +38,7 @@ function App() {
       <h1>Tic tac toe</h1>
       <button onClick={resetGame}>Restart game</button>
       <Board board={board} updateBoard={updateBoard} />
-      <section className="turn">
-        <Square isSelected={turn === TURNS.X}>{TURNS.X}</Square>
-        <Square isSelected={turn === TURNS.O}>{TURNS.O}</Square>
-      </section>
+      <Turns turn={turn} />
       <WinnerModal winner={winner} resetGame={resetGame} />
     </main>
   );

@@ -1,6 +1,6 @@
 import { Square } from "./Square";
 
-export function WinnerModal({ winner, resetGame }) {
+export const WinnerModal = ({ winner, resetGame }) => {
   if (winner === null) return null;
   const winnerText = winner === false ? "Draw" : "Win";
   return (
@@ -14,4 +14,4 @@ export function WinnerModal({ winner, resetGame }) {
       </div>
     </section>
   );
-}
+};
