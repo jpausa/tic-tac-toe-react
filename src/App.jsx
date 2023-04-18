@@ -5,6 +5,8 @@ import { checkEndGame, checkWinner } from "./helpers/common";
 import { WinnerModal } from "./components/WinnerModal";
 import { Board } from "./components/Board";
 import { Turns } from "./components/Turns";
+import "./helpers/storage";
+import { saveGameStorage } from "./helpers/storage";
 
 function App() {
   const [board, setBoard] = useState(() => {
@@ -28,8 +30,7 @@ function App() {
     setBoard(newBoard);
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X;
     setTurn(newTurn);
-    window.localStorage.setItem("board", JSON.stringify(newBoard));
-    window.localStorage.setItem("turn", newTurn);
+    saveGameStorage(newBoard, newTurn);
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
       confetti();
@@ -43,8 +44,7 @@ function App() {
     setBoard(Array(9).fill(null));
     setTurn(TURNS.X);
     setWinner(null);
-    window.localStorage.removeItem("board");
-    window.localStorage.removeItem("turn");
+    resetGameStorage();
   };
 
   return (
